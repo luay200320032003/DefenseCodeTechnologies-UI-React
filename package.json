@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "engines": {
+    "node": "24.x"
+  },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",
     "class-variance-authority": "^0.7.1",
