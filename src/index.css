@@ -2,11 +2,8 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 
-@tailwind base;
+@import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-@tailwind components;
-@tailwind utilities;
 
 :root {
   --text: #6b6375;
@@ -121,7 +118,7 @@
 }
 
 #root {
-  width: 1126px;
+  width: 1300px;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
