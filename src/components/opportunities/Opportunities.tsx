@@ -1,0 +1,201 @@
+import React from 'react'
+import { Button} from "@/components/ui/button";
+import DepartmentCard from "../departments/DepartmentCard";
+
+const departments = [
+  {
+    id: 1,
+    name: "U.S. Army Installation - Fort Jackson",
+    category: "Military/Defense",
+    description: "Major Army training installation requires secure portal for soldiers, families, and civilian staff. Need integration with DoD systems, base services directory, housing management, and secure messaging for 50,000+ personnel.",
+    image: "https://images.unsplash.com/photo-1669877232732-837ba8f84b86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaWxpdGFyeSUyMGJhc2UlMjBidWlsZGluZ3xlbnwxfHx8fDE3NzM3OTU5OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Secure Portal", "CAC Integration", "Housing System", "Base Services", "Emergency Alerts"],
+    budget: "$400,000 - $650,000",
+    location: "Columbia, SC",
+    timeline: "12-18 months",
+    compliance: ["DoD 8500.01", "NIST 800-171", "ITAR", "FedRAMP High", "Section 508"]
+  },
+  {
+    id: 2,
+    name: "Veterans Affairs Medical Center",
+    category: "Federal Healthcare",
+    description: "VA hospital serving 100,000+ veterans needs patient portal, appointment scheduling, prescription refills, telehealth integration, and veteran benefits information system.",
+    image: "https://images.unsplash.com/photo-1765294152699-93a8a616fe48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZXRlcmFucyUyMGhvc3BpdGFsJTIwYnVpbGRpbmd8ZW58MXx8fHwxNzczNzk1OTk1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Patient Portal", "Telehealth", "Prescription System", "Appointment Booking", "Benefits Info"],
+    budget: "$350,000 - $550,000",
+    location: "Phoenix, AZ",
+    timeline: "10-15 months",
+    compliance: ["HIPAA", "FISMA", "Section 508", "WCAG 2.1 AA", "FedRAMP"]
+  },
+  {
+    id: 3,
+    name: "Federal Bureau of Investigation Field Office",
+    category: "Federal Law Enforcement",
+    description: "FBI regional office requires public-facing website for crime tips, community outreach, Most Wanted listings, and recruitment. Extremely high security and privacy requirements.",
+    image: "https://images.unsplash.com/photo-1634508943475-541d357f8a96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmZWRlcmFsJTIwYnVpbGRpbmclMjBnb3Zlcm5tZW50fGVufDF8fHx8MTc3Mzc5NTk5NXww&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Tip Submission Portal", "Most Wanted Database", "Recruitment Portal", "Community Resources", "Secure Forms"],
+    budget: "$500,000 - $800,000",
+    location: "Chicago, IL",
+    timeline: "15-20 months",
+    compliance: ["CJIS", "FedRAMP High", "NIST 800-53", "FISMA High", "Section 508"]
+  },
+  {
+    id: 4,
+    name: "National Park Service - Yellowstone",
+    category: "Federal Parks & Recreation",
+    description: "America's first national park needs modern website with reservation system, trail information, wildlife tracking, permit applications, and real-time alerts for 4+ million annual visitors.",
+    image: "https://images.unsplash.com/photo-1733496636031-3b109271182d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXRpb25hbCUyMHBhcmslMjBmb3Jlc3R8ZW58MXx8fHwxNzczNzk1OTk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Reservation System", "Interactive Maps", "Permit Applications", "Wildlife Alerts", "Educational Resources"],
+    budget: "$250,000 - $400,000",
+    location: "Wyoming, MT, ID",
+    timeline: "8-12 months",
+    compliance: ["Section 508", "WCAG 2.1 AA", "FedRAMP", "ADA"]
+  },
+  {
+    id: 5,
+    name: "State Department of Transportation",
+    category: "State Infrastructure",
+    description: "DOT managing 50,000+ miles of highways needs traffic management portal, construction alerts, contractor bidding system, and public transit integration for statewide transportation network.",
+    image: "https://images.unsplash.com/photo-1748007868195-9e20e9f51ba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmFuc3BvcnRhdGlvbiUyMGRlcGFydG1lbnQlMjBoaWdod2F5fGVufDF8fHx8MTc3Mzc5NTk5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Traffic Dashboard", "Construction Alerts", "Bidding Portal", "GIS Mapping", "Public Transit Info"],
+    budget: "$300,000 - $500,000",
+    location: "State of Texas",
+    timeline: "12-16 months",
+    compliance: ["Section 508", "WCAG 2.1 AA", "NIST 800-53", "ADA"]
+  },
+  {
+    id: 6,
+    name: "County Public Health Department",
+    category: "Public Health",
+    description: "Health department serving 2M+ residents needs COVID/disease tracking, immunization records, health inspections database, vital records requests, and emergency preparedness information.",
+    image: "https://images.unsplash.com/photo-1602747160469-4ee587b6a060?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGglMjBkZXBhcnRtZW50JTIwbWVkaWNhbHxlbnwxfHx8fDE3NzM3OTU5OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Health Tracking", "Immunization Records", "Restaurant Inspections", "Vital Records", "Emergency Alerts"],
+    budget: "$180,000 - $300,000",
+    location: "Cook County, IL",
+    timeline: "8-11 months",
+    compliance: ["HIPAA", "Section 508", "WCAG 2.1 AA", "ADA", "Privacy Shield"]
+  },
+  {
+    id: 7,
+    name: "City of Springfield",
+    category: "Municipal Government",
+    description: "City government seeking comprehensive portal redesign to improve citizen services, online payments, and permit applications. Current site is outdated and not mobile-friendly. Population: 250,000.",
+    image: "https://images.unsplash.com/photo-1580415742185-c068be2aaecd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaXR5JTIwaGFsbCUyMGJ1aWxkaW5nfGVufDF8fHx8MTc3Mzc5NTg3MXww&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Citizen Portal", "Bill Payment System", "Permit Applications", "Meeting Schedules", "GIS Integration"],
+    budget: "$150,000 - $250,000",
+    location: "Springfield, IL",
+    timeline: "8-12 months",
+    compliance: ["WCAG 2.1 AA", "Section 508", "ADA", "HTTPS"]
+  },
+  {
+    id: 8,
+    name: "Superior Court District",
+    category: "Judicial",
+    description: "District court system needs case management portal, e-filing system, and public records access. High security requirements with integration to statewide court systems.",
+    image: "https://images.unsplash.com/photo-1596045923532-b76e05f7943f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3VydGhvdXNlJTIwYnVpbGRpbmd8ZW58MXx8fHwxNzczNzk1ODcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["E-Filing System", "Case Lookup", "Payment Processing", "Jury Management", "Secure Document Portal"],
+    budget: "$300,000 - $500,000",
+    location: "Maricopa County, AZ",
+    timeline: "12-18 months",
+    compliance: ["WCAG 2.1 AA", "Section 508", "CJIS", "PCI DSS", "SOC 2"]
+  },
+  {
+    id: 9,
+    name: "NASA Space Center",
+    category: "Federal Research & Science",
+    description: "National Aeronautics and Space Administration center needs public engagement platform, research publications portal, astronaut training information, and live mission tracking system.",
+    image: "https://images.unsplash.com/photo-1644957656942-2928f256418e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXNhJTIwc3BhY2UlMjBjZW50ZXJ8ZW58MXx8fHwxNzczNzk2MDk1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Public Portal", "Research Database", "Mission Tracking", "Educational Resources", "Media Center"],
+    budget: "$450,000 - $700,000",
+    location: "Houston, TX",
+    timeline: "14-20 months",
+    compliance: ["NIST 800-53", "FedRAMP High", "Section 508", "ITAR", "WCAG 2.1 AA"]
+  },
+  {
+    id: 10,
+    name: "Police Department",
+    category: "Public Safety",
+    description: "Metropolitan police department requiring crime reporting portal, community policing platform, transparency dashboard, and recruitment system serving population of 800,000+.",
+    image: "https://images.unsplash.com/photo-1714144629185-1949b7bdeedd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb2xpY2UlMjBkZXBhcnRtZW50JTIwYnVpbGRpbmd8ZW58MXx8fHwxNzczNzk2MDk2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Crime Reporting", "Transparency Dashboard", "Recruitment Portal", "Community Alerts", "Records Requests"],
+    budget: "$200,000 - $350,000",
+    location: "San Francisco, CA",
+    timeline: "9-13 months",
+    compliance: ["CJIS", "Section 508", "WCAG 2.1 AA", "ADA", "NIST 800-53"]
+  },
+  {
+    id: 11,
+    name: "Environmental Protection Agency Regional Office",
+    category: "Environmental",
+    description: "EPA regional office needs environmental data portal, permit tracking system, compliance reporting, public comment platform, and educational resources for environmental protection.",
+    image: "https://images.unsplash.com/photo-1711195662119-d8734410e0c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbnZpcm9ubWVudGFsJTIwcHJvdGVjdGlvbiUyMGFnZW5jeXxlbnwxfHx8fDE3NzM3OTYwOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Data Portal", "Permit System", "Compliance Tracking", "Public Comment", "Environmental Reports"],
+    budget: "$280,000 - $450,000",
+    location: "Region 5 - Great Lakes",
+    timeline: "10-14 months",
+    compliance: ["Section 508", "WCAG 2.1 AA", "FedRAMP", "NIST 800-53", "ADA"]
+  },
+  {
+    id: 12,
+    name: "Social Security Administration District Office",
+    category: "Federal Benefits",
+    description: "SSA office serving 500,000+ beneficiaries needs benefit application portal, account management system, disability claims processing, and multilingual support platform.",
+    image: "https://images.unsplash.com/photo-1764931806432-a85ecbbece40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBzZWN1cml0eSUyMG9mZmljZXxlbnwxfHx8fDE3NzM3OTYwOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    services: ["Benefit Applications", "Account Portal", "Claims Processing", "Multilingual Support", "Appointment Scheduling"],
+    budget: "$320,000 - $520,000",
+    location: "Baltimore, MD",
+    timeline: "11-16 months",
+    compliance: ["FISMA", "Section 508", "WCAG 2.1 AA", "Privacy Act", "FedRAMP"]
+  }
+];
+
+export default function Opportunities() {
+const [searchQuery, setSearchQuery] = React.useState("");
+const [selectedCategory, setSelectedCategory] = React.useState("All");
+
+const filteredDepartments = departments.filter((dept) => {
+  const matchesSearch = dept.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        dept.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        dept.location.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === "All" || dept.category === selectedCategory;
+
+  return matchesCategory && matchesSearch;
+});
+
+  return (
+    <div>
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-8">
+          <h2 className="text-3xl mb-2">Available Opportunities</h2>
+          <p className="text-gray-600">
+            {filteredDepartments.length} government department{filteredDepartments.length !== 1 ? 's' : ''} seeking web development services
+          </p>
+        </div>
+
+        {filteredDepartments.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-gray-500 text-lg">No departments found matching your criteria.</p>
+            <Button 
+              variant="outline" 
+              className="mt-4"
+              onClick={() => {
+                setSearchQuery("");
+                setSelectedCategory("All");
+              }}
+            >
+              Clear Filters
+            </Button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredDepartments.map((department) => (
+              <DepartmentCard key={department.id} {...department} />
+            ))}
+          </div>
+        )}
+      </main>
+    </div>
+  )
+}
+ 

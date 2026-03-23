@@ -1,8 +1,10 @@
- 
+import Opportunities from "../opportunities/Opportunities";
+import FilterCategory from "../filter/FilterCategory";
+
 function Home() {
   return (
+    <>
     <div>
-
        <section className="bg-linear-to-br from-blue-600 to-indigo-700 text-white py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl sm:text-5xl mb-4">Build Websites for Government Agencies</h2>
@@ -31,6 +33,8 @@ function Home() {
         </div>
       </section>
           </div>
+           
+         </>
   );
 }
 
