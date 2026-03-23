@@ -1,5 +1,3 @@
-import Opportunities from "../opportunities/Opportunities";
-import FilterCategory from "../filter/FilterCategory";
 
 function Home() {
   return (
