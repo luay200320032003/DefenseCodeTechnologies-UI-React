@@ -2,20 +2,11 @@ import { MapPin, DollarSign, Clock, Shield } from "lucide-react"
 import { Card } from  "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button} from "@/components/ui/button";
+import { IDepartmentCard } from "@/shared/interfaces/DepartmentCard";
 
-interface DepartmentCardProps {
-  name: string;
-  category: string;
-  description: string;
-  image: string;
-  services: string[];
-  budget: string;
-  location: string;
-  timeline: string;
-  compliance: string[];
-}
+ 
 
-export default function DepartmentCard({ name, description, location, category, image, services, budget, timeline, compliance }: DepartmentCardProps) {
+export default function DepartmentCard({ name, description, location, category, image, services, budget, timeline, compliance }: IDepartmentCard) {
     return (
         <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
       <div className="relative h-48 overflow-hidden">
