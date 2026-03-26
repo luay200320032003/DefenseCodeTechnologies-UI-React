@@ -1,25 +1,14 @@
 import { Badge } from "@/components/ui/badge"
-import { useState } from "react";
 import {  Filter} from "lucide-react";
+import {filtercategories} from "@/shared/constants/Filtercategories";
 
-export default function FilterCategory() {
+type FilterCategoryProps = {
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+};
 
-      const categories = [
-    "All",
-    "Military/Defense",
-    "Federal Healthcare",
-    "Federal Law Enforcement",
-    "Federal Parks & Recreation",
-    "State Infrastructure",
-    "Public Health",
-    "Municipal Government",
-    "Judicial",
-    "Federal Research & Science",
-    "Public Safety",
-    "Environmental",
-    "Federal Benefits"
-  ];
-  const [selectedCategory, setSelectedCategory] = useState("All");
+export default function FilterCategory({ selectedCategory, onCategoryChange }: FilterCategoryProps) {
+
   return (
     <div>
           <section className="bg-white border-b py-4 sticky top-30 z-40">
@@ -29,12 +18,12 @@ export default function FilterCategory() {
             <span className="text-sm font-medium">Filter by Category:</span>
           </div>
           <div className="flex gap-2 overflow-x-auto pb-2">
-            {categories.map((category) => (
+            {filtercategories.map((category) => (
               <Badge
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
                 className="cursor-pointer whitespace-nowrap text-xs"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => onCategoryChange(category)}
               >
                 {category}
               </Badge>
