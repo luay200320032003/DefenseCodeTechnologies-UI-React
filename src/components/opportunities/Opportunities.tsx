@@ -3,11 +3,13 @@ import { Button} from "@/components/ui/button";
 import DepartmentCard from "../departments/DepartmentCard";
 import {departments} from "@/services/DepartmentsService";
 
- 
+type OpportunitiesProps = {
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+};
 
-export default function Opportunities() {
+export default function Opportunities({ selectedCategory, onCategoryChange }: OpportunitiesProps) {
 const [searchQuery, setSearchQuery] = React.useState("");
-const [selectedCategory, setSelectedCategory] = React.useState("All");
 
 const filteredDepartments = departments.filter((dept) => {
   const matchesSearch = dept.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -37,7 +39,7 @@ const filteredDepartments = departments.filter((dept) => {
               className="mt-4"
               onClick={() => {
                 setSearchQuery("");
-                setSelectedCategory("All");
+                onCategoryChange("All");
               }}
             >
               Clear Filters
