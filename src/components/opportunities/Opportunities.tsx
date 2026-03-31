@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button} from "@/components/ui/button";
 import DepartmentCard from "../departments/DepartmentCard";
 import {departments} from "@/services/DepartmentsService";
@@ -6,15 +5,24 @@ import {departments} from "@/services/DepartmentsService";
 type OpportunitiesProps = {
   selectedCategory: string;
   onCategoryChange: (category: string) => void;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
 };
 
-export default function Opportunities({ selectedCategory, onCategoryChange }: OpportunitiesProps) {
-const [searchQuery, setSearchQuery] = React.useState("");
+export default function Opportunities({
+  selectedCategory,
+  onCategoryChange,
+  searchQuery,
+  onSearchChange,
+}: OpportunitiesProps) {
 
 const filteredDepartments = departments.filter((dept) => {
   const matchesSearch = dept.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                         dept.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                        dept.location.toLowerCase().includes(searchQuery.toLowerCase());
+                        dept.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        dept.services.some((service) =>
+                          service.toLowerCase().includes(searchQuery.toLowerCase())
+                        );
     const matchesCategory = selectedCategory === "All" || dept.category === selectedCategory;
 
   return matchesCategory && matchesSearch;
@@ -38,7 +46,7 @@ const filteredDepartments = departments.filter((dept) => {
               variant="outline" 
               className="mt-4"
               onClick={() => {
-                setSearchQuery("");
+                onSearchChange("");
                 onCategoryChange("All");
               }}
             >
