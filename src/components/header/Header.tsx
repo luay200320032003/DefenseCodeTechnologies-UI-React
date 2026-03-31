@@ -1,10 +1,13 @@
 import { Button} from "@/components/ui/button";
 import { Search } from "lucide-react";
-import { useState } from "react";
 import { Input } from "../ui/input";
 
-export default function Header() {
-  const [searchQuery, setSearchQuery] = useState("")
+type HeaderProps = {
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+};
+
+export default function Header({ searchQuery, onSearchChange }: HeaderProps) {
   return (
           <div >
         <header className="bg-white border-b sticky top-0 z-50 shadow-sm">
@@ -29,7 +32,7 @@ export default function Header() {
               placeholder="Search departments, locations, or services..."
               className="pl-10 h-12"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => onSearchChange(e.target.value)}
             />
           </div>
         </div>

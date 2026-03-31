@@ -1,5 +1,5 @@
 export interface IDepartmentCard {
-   name: string;
+   name: string ;
   category: string;
   description: string;
   image: string;
